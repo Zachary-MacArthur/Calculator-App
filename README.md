@@ -1,4 +1,4 @@
-# 🔢 #100Devs Push Project001: Calculator
+# 🔢 #100Devs Project: Calculator App
 Zachary MacArthur - <a href="https://zachary-macarthur.github.io/Calculator-App/" target="_blank">Submission Link</a>
 ### Goal: Build a Simple Calculator using JS OOP best practices
 
