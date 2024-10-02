@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+        <title>Calculator App</title>
+        <link rel="stylesheet" href="./css/normalize.css">
+        <link rel="stylesheet" href = "./css/styles.css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" >
+        
+        <script src="./js/script.js" defer></script>
+        <script src="./js/calculator.js" defer></script>
+    </head>
+    <body>
+        <div class="calculator">
+            <div class="calculator-grid" data-box-shadow-color = "rgba(255,255,255,1)">
+                <div class="output">
+                    <div data-prev-operand class="prev-operand"></div>
+                    <div data-current-operand class="current-operand"></div>
+                </div>
+                <div class="backlit-color"><button data-backlit><i id="backlit-image"><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox="0 0 24 24"><title>moon_line</title><g id="moon_line" fill='none' fill-rule='evenodd'><path d='M24 0v24H0V0h24ZM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01-.184-.092Z'/><path fill='#09244BFF' d='M13.574 3.137c-.79-.14-1.432.662-1.097 1.409a6 6 0 0 1-7.931 7.931 1.01 1.01 0 0 0-1.409 1.097A9 9 0 0 0 21 12c0-4.434-3.206-8.118-7.426-8.863Zm1.307 2.481A7.002 7.002 0 0 1 12 19a7.002 7.002 0 0 1-6.382-4.12 8 8 0 0 0 9.263-9.263Z'/></g></svg></i></button></div>
+                <div class="backlit-color"><button data-all-clear><i>AC</i></button></div>
+                <div class="backlit-color"><button data-delete><i class="fa-solid fa-delete-left"></i></button></div>
+                <div class="backlit-color"><button data-operation><i>%</i></button></div>
+                <div class="backlit-color"><button data-self-operation><i>+/-<!-- &#177; --></i></button></div>
+                <div class="backlit-color"><button data-self-operation><i>x&sup2;</i></button></div>
+                <div class="backlit-color"><button data-self-operation><i>&radic;x</i></button></div>
+                <div class="backlit-color"><button data-operation><i>/</i></button></div>
+                <div class="backlit-color"><button data-number><i>7</i></button></div>
+                <div class="backlit-color"><button data-number><i>8</i></button></div>
+                <div class="backlit-color"><button data-number><i>9</i></button></div>
+                <div class="backlit-color"><button data-operation><i>*</i></button></div>
+                <div class="backlit-color"><button data-number><i>4</i></button></div>
+                <div class="backlit-color"><button data-number><i>5</i></button></div>
+                <div class="backlit-color"><button data-number><i>6</i></button></div>
+                <div class="backlit-color"><button data-operation><i>+</i></button></div>
+                <div class="backlit-color"><button data-number><i>1</i></button></div>
+                <div class="backlit-color"><button data-number><i>2</i></button></div>
+                <div class="backlit-color"><button data-number><i>3</i></button></div>
+                <div class="backlit-color"><button data-operation><i>-</i></button></div>
+                <div class="backlit-color"><button data-number><i>.</i></button></div>
+                <div class="backlit-color"><button data-number><i>0</i></button></div>
+                <div class="backlit-color span-two"><button data-equals ><i>Enter</i></button></div>
+            </div>
+        </div>
+        
+        
+        <footer>
+           <a href="https://zachary-macarthur.com/" target="_blank" >&copy Zachary MacArthur 2024</a> 
+        </footer>
+          
+        
+    </body>
+</html>

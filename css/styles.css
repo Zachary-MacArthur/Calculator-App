@@ -1,0 +1,602 @@
+/* -------------------------------------------------------------------------- */
+/*                                     CSS                                    */
+/* -------------------------------------------------------------------------- */
+:root {
+  --space-color: #0f2437;
+  --light-earth-water-color: #92c7f3/* #2276bc */;
+  --light-earth-land-color: #c0f6cd/* #65c547 */;
+  --earth-water-color: #2276bc;
+  --earth-land-color: #65c547;
+  --earth-cloud-color: #FFF;
+  --earth-rotation: 20000ms;
+  --cloud-rotation: 30000ms;
+  --moon-color: #e6e8d2;
+}
+
+::-webkit-scrollbar { /*chrome and safari*/
+  width: 0px;
+}
+
+::-moz-scrollbar { /*firefox*/
+  width: 0px;
+}
+
+::-ms-scrollbar { /*ie and microsoft edge*/
+  width: 0px;
+}
+
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+  font-family: "Gotham Rounded", sans-serif;
+  /* Add the missing quotes */
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: rgb(36, 35, 35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+body.light {
+  background: white;
+}
+
+button {
+  width: 100%;
+  height: 100%;
+}
+
+hr {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 4px;
+  background: black;
+  border-style: initial;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body.light a {
+  color: black;
+}
+
+footer {
+  text-align: center;
+  margin: 1% 0;
+  color: white;
+}
+
+body.light footer {
+  color: black;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+.calculator {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 1%;
+  background: linear-gradient(180deg, #282828, #202020);
+  box-shadow: -8px 0 8px rgba(0, 0, 0, 0.15), 0 -8px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 0, 0, 0.75), 10px 20px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border: solid black;
+  border-top: solid rgba(255, 255, 255, 0.25);
+  border-left: solid rgba(255, 255, 255, 0.25);
+  margin: auto;
+}
+.calculator .output {
+  grid-column: 1/-1;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  padding: 0 1.5%;
+  z-index: 100;
+}
+.calculator .output .prev-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
+}
+.calculator .output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+}
+.calculator .backlit-image {
+  z-index: 1001;
+  position: relative;
+}
+.calculator svg path:nth-child(2) {
+  fill: white;
+}
+.calculator button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid black;
+  outline: none;
+  background: linear-gradient(180deg, #282828, #202020);
+  box-shadow: inset -8px 0 8px rgba(0, 0, 0, 0.15), inset 0 -8px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 0, 0, 0.75), 10px 20px 25px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  transition: 0.2s all;
+  -webkit-transition: 0.2s all;
+  -moz-transition: 0.2s all;
+  -ms-transition: 0.2s all;
+  -o-transition: 0.2s all;
+  padding-top: 3px;
+}
+.calculator button i {
+  position: relative;
+  color: #fff;
+  z-index: 100;
+}
+.calculator.raised button i {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+}
+.calculator.raised #backlit-image {
+  top: -5px;
+  left: 5px;
+}
+.calculator button::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  bottom: 3px;
+  right: 4px;
+  background: linear-gradient(90deg, #232323, #4a4a4a);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: -4px -4px 3px rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(0, 0, 0, 0.2666666667);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2666666667);
+  border-top: 1px solid rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+.calculator.raised button::before {
+  bottom: 14px;
+  right: 12px;
+}
+.calculator::before, .calculator button::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  mix-blend-mode: multiply;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+.calculator button:active {
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  -o-transform: scale(0.95);
+}
+.calculator button:active::before {
+  box-shadow: none;
+}
+.calculator.red::before, .calculator.red button::after {
+  background-color: rgb(252, 65, 65);
+}
+.calculator.blue::before, .calculator.blue button::after {
+  background-color: rgb(65, 65, 252);
+}
+.calculator.green::before, .calculator.green button::after {
+  background-color: rgb(65, 252, 65);
+}
+.calculator.yellow::before, .calculator.yellow button::after {
+  background-color: rgb(252, 252, 65);
+}
+.calculator.purple::before, .calculator.purple button::after {
+  background-color: rgb(252, 65, 252);
+}
+.calculator.orange::before, .calculator.orange button::after {
+  background-color: rgb(252, 148, 65);
+}
+
+.calculator.light {
+  /* background: linear-gradient(180deg, #d7d7d7, #dfdfdf); */
+  background: linear-gradient(180deg, #fafafa, #fafafa);
+  box-shadow: -8px 0 8px rgba(0, 0, 0, 0.25), 0 -8px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.15), 10px 20px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: -8px 0 8px rgba(0, 0, 0, 0.15), 0 -8px 8px rgba(0, 0, 0, 0.25), 10px 20px 25px rgba(0, 0, 0, 0.4);
+  border: solid white;
+  border-top: solid rgba(255, 255, 255, 0.75);
+  border-left: solid rgba(255, 255, 255, 0.75);
+}
+.calculator.light .output {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.calculator.light .output .prev-operand {
+  color: rgba(0, 0, 0, 0.75);
+}
+.calculator.light .output .current-operand {
+  color: black;
+}
+.calculator.light svg path:nth-child(2) {
+  fill: black;
+}
+.calculator.light button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid black;
+  outline: none;
+  background: linear-gradient(180deg, #282828, #202020);
+  box-shadow: inset -8px 0 8px rgba(0, 0, 0, 0.15), inset 0 -8px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 0, 0, 0.75), 10px 20px 25px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  transition: 0.2s all;
+  -webkit-transition: 0.2s all;
+  -moz-transition: 0.2s all;
+  -ms-transition: 0.2s all;
+  -o-transition: 0.2s all;
+  border: white;
+  background: linear-gradient(180deg, #fafafa, #e4e3e3);
+  /* box-shadow: inset -8px 0 8px rgba(0,0,0,0.15), //old design - flat glass-like effect
+  inset 0 -8px 8px rgba(255,255,255,0.15),
+  0 0 0 2px rgba(255, 255, 255,1), 
+  10px 20px 25px rgba(255,255,255,0.25); */
+  box-shadow: inset -8px 0 16px rgba(0, 0, 0, 0.15), inset 0 -8px 8px rgba(255, 255, 255, 0.5);
+}
+.calculator.light button i {
+  color: black;
+}
+.calculator.light button::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  bottom: 3px;
+  right: 4px;
+  background: linear-gradient(90deg, #232323, #4a4a4a);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: -4px -4px 3px rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(0, 0, 0, 0.2666666667);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2666666667);
+  border-top: 1px solid rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  background: linear-gradient(90deg, #f3f3f3, #efefef);
+  /* box-shadow: -4px -4px 3px rgba(0, 0, 0, 0.25); */
+  box-shadow: -4px -4px 3px rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.2666666667);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2666666667);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+.calculator.light.raised button::before {
+  bottom: 16px;
+  right: 14px;
+}
+.calculator.light.red::before, .calculator.light.red button::after {
+  background-color: rgba(252, 65, 65, 0.55);
+  mix-blend-mode: hard-light;
+}
+.calculator.light.blue::before, .calculator.light.blue button::after {
+  background-color: rgba(65, 65, 252, 0.55);
+  mix-blend-mode: hard-light;
+}
+.calculator.light.green::before, .calculator.light.green button::after {
+  background-color: rgba(65, 252, 65, 0.55);
+  mix-blend-mode: hard-light;
+}
+.calculator.light.yellow::before, .calculator.light.yellow button::after {
+  background-color: rgba(252, 252, 65, 0.55);
+  mix-blend-mode: hard-light;
+}
+.calculator.light.purple::before, .calculator.light.purple button::after {
+  background-color: rgba(252, 65, 252, 0.55);
+  mix-blend-mode: hard-light;
+}
+.calculator.light.orange::before, .calculator.light.orange button::after {
+  background-color: rgba(252, 148, 65, 0.55);
+  mix-blend-mode: hard-light;
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(6, 100px);
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  /* &.backlit-switch{
+    .backlit-color{
+      box-shadow:0 0 9px 6px white;
+    }
+  } */
+  /* .backlit-color::before{ //experimental
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    z-index: 1;
+    box-shadow: 0 0 9px 6px rgba(0, 0, 0, 0);
+  } */
+}
+.calculator-grid > :first-child {
+  margin-bottom: 15px;
+}
+.calculator-grid .backlit-color {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  z-index: 1;
+  box-shadow: 0 0 9px 6px rgba(0, 0, 0, 0);
+}
+
+/* .calculator.light .backlit-color::before{
+    content: "";
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+} */
+.span-two {
+  grid-column: span 2;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                           TOGGLE DARK/LIGHT MODE                           */
+/* -------------------------------------------------------------------------- */
+.wrapper {
+  position: absolute;
+  height: 50px;
+  top: 40px;
+  right: 40px;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -ms-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /*transform: scale(1.5);
+  transform-origin: top right;
+  */
+}
+
+.wrapper * {
+  box-sizing: unset !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  DAY STATE                                 */
+/* -------------------------------------------------------------------------- */
+.toggle {
+  position: relative;
+  /* display: inline-block; */
+  width: 100px;
+  height: 100%;
+  /* height: 100px; */
+  /* margin-left: 100px; */
+  padding: 10px;
+  border-radius: 40px;
+  /* transform: scale(1.5); */
+}
+
+.toggle:before,
+.toggle:after {
+  content: "";
+  display: table;
+}
+
+.toggle:after {
+  clear: both;
+}
+
+.toggle-bg {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 100%;
+  height: 100%;
+  background-color: #C0E6F6;
+  border-radius: 40px;
+  border: 4px solid #81C0D5;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -ms-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.toggle-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  border: 1px solid red;
+  border-radius: 40px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: 50px;
+  background-color: #F5EB42;
+  border: 4px solid #E4C74D;
+  border-radius: 50%;
+  transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.toggle-switch-figure {
+  position: absolute;
+  bottom: -14px;
+  left: -50px;
+  display: block;
+  width: 80px;
+  height: 30px;
+  border: 8px solid #D4D4D2;
+  border-radius: 20px;
+  background-color: #fff;
+  transform: scale(0.4);
+  transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.toggle-switch-figure:after {
+  content: "";
+  display: block;
+  position: relative;
+  top: -65px;
+  right: -42px;
+  width: 15px;
+  height: 15px;
+  border: 8px solid #D4D4D2;
+  border-radius: 100%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotateZ(70deg);
+  background-color: #fff;
+}
+.toggle-switch-figure:before {
+  content: "";
+  display: block;
+  position: relative;
+  top: -25px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border: 8px solid #D4D4D2;
+  border-radius: 100%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotateZ(30deg);
+  background-color: #fff;
+}
+
+.toggle-switch-figureAlt {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 2px;
+  width: 2px;
+  height: 2px;
+  background-color: #EFEEDA;
+  border-radius: 100%;
+  border: 4px solid #DEE1C5;
+  box-shadow: 42px -7px 0 -3px #FCFCFC, 75px -10px 0 -3px #FCFCFC, 54px 4px 0 -4px #FCFCFC, 83px 7px 0 -2px #FCFCFC, 63px 18px 0 -4px #FCFCFC, 44px 28px 0 -2px #FCFCFC, 78px 23px 0 -3px #FCFCFC;
+  transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(0);
+}
+
+.toggle-switch-figureAlt:before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 18px;
+  width: 7px;
+  height: 7px;
+  background-color: #EFEEDA;
+  border-radius: 100%;
+  border: 4px solid #DEE1C5;
+}
+
+.toggle-switch-figureAlt:after {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 15px;
+  width: 2px;
+  height: 2px;
+  background-color: #EFEEDA;
+  border-radius: 100%;
+  border: 4px solid #DEE1C5;
+}
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                               TITLE CATEGORY                               */
+/* -------------------------------------------------------------------------- */
+.category {
+  position: relative;
+  top: -20px;
+  width: 80%;
+  height: 20px;
+  border: 4px solid #DEE1C5;
+  background-color: #FFFDF2;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin: 5px auto;
+  text-align: center;
+  vertical-align: center;
+  padding-top: 3px;
+}
+
